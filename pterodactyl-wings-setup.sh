@@ -1,3 +1,4 @@
+#!/bin/bash
 # Optimizes APT mirrors, installs qemu-guest-agent, installs Wings Dependencies, 
 # makes additional configuration changes outlined at https://pterodactyl.io/wings/1.0/installing.html, and downloads Wings
 # then reboots the system
