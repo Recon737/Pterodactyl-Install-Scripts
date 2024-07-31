@@ -1,0 +1,27 @@
+#!/bin/bash
+# Installs the dependencies for Pterodactyl Panel.
+# DOES NOT DOWNLOAD PTERODACTYL PANEL.
+
+# Update Debian
+apt update
+apt upgrade -y
+
+# Add "add-apt-repository" command + other dependencies
+apt -y install apt-transport-https ca-certificates curl gnupg2 lsb-release software-properties-common
+
+# Add additional repositories for PHP
+curl -fsSL https://packages.sury.org/php/apt.gpg| gpg --dearmor -o /etc/apt/trusted.gpg.d/sury-keyring.gpg
+echo "deb [signed-by=/etc/apt/trusted.gpg.d/sury-keyring.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" |>
+# Add Redis official APT repository
+curl -fsSL https://packages.redis.io/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/redis-archive-keyring.gpg
+echo "deb [signed-by=/etc/apt/trusted.gpg.d/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs)>
+# Download MariaDB repo setup script
+curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
+
+# Update repositories list
+apt update
+
+# Install Dependencies
+apt -y install git mariadb-server nginx php8.1 php8.1-{common,cli,gd,mysql,mbstring,bcmath,xml,fpm,curl,zip} redis-serv>
+# Install Composer for PHP
+curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
